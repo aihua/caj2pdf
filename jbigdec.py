@@ -26,7 +26,7 @@ if (arch[1] == 'WindowsPE'):
     else:
         libjbigdec = cdll.LoadLibrary("./lib/bin/libjbigdec-w32.dll")
 else:
-    libjbigdec = cdll.LoadLibrary("./libjbigdec.so")
+    libjbigdec = cdll.LoadLibrary("libjbigdec.so")
 
 #SaveJbigAsBmp = libjbigdec.SaveJbigAsBmp
 #SaveJbigAsBmp.restype = None
