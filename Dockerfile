@@ -8,7 +8,8 @@ WORKDIR /app
 COPY sources.list /etc/apt/
 
 COPY requirements.txt requirements.txt
-RUN apt-get update && apt-get -y upgrade && apt-get install -y mupdf-tools && pip3 install -r requirements.txt
+RUN apt-get update && apt-get -y upgrade && apt-get install -y mupdf-tools \
+    && pip3 install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
 
 COPY . .
 
