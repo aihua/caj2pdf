@@ -30,7 +30,17 @@ cc -Wall `pkg-config --cflags jbig2dec` -fPIC -shared -o libjbig2codec.so decode
 
 如果你对二进制文件分析、图像/文字压缩算法、逆向工程等领域中的一个或几个有所了解，欢迎帮助完善此项目。你可以从阅读[项目 Wiki](https://github.com/JeziL/caj2pdf/wiki) 开始，看看是否有可以发挥你特长的地方。**Pull requests are always welcome**.
 
-## How to use
+## How to use with Docker
+
+```
+mkdir /tmp/caj
+docker build -t python-caj2pdf .
+docker run -it --rm --mount type=bind,src=/tmp/caj,dst=/tmp/caj  python-caj2pdf /bin/bash
+./convert.sh
+```
+
+
+## How to use without Docker
 
 ### 环境和依赖
 
