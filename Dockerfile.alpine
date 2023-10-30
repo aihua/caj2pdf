@@ -1,0 +1,19 @@
+
+FROM python:3-alpine3.18
+
+WORKDIR /app
+
+
+COPY . .
+
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk update && apk upgrade --no-cache && apk add --no-cache mupdf-tools \
+    && pip3 install --no-cache-dir -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/ --trusted-host=mirrors.aliyun.com
+
+
+WORKDIR /app/lib
+RUN apk add --no-cache build-base jbig2dec-dev \
+    && cc -Wall -fPIC --shared -o bin/libjbigdec.so jbigdec.cc JBigDecode.cc
+WORKDIR /app
+
+ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/app/lib/bin
